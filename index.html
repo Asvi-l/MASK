@@ -252,14 +252,14 @@
             <h1>Administra tus tareas de forma simple y eficiente</h1>
             <p>Tu tiempo, tus reglas. Organízate con nuestra app diseñada para maximizar tu productividad.</p>
             <div class="cta">
-                <button>Probar la demo</button>
-                <button>Explorar funciones</button>
+                <button onclick="scrollToDiv('downloads')">Probar la demo</button>
+                <button onclick="scrollToDiv('future-features')">Explorar funciones</button>
             </div>
         </div>
     </div>
 
     <!-- Sección de características -->
-    <div class="features">
+    <div class="features" id="future-features">
         <div>
             <h3>Interfaz amigable</h3>
             <p>Diseño intuitivo y fácil de usar para todos.</p>
@@ -374,6 +374,12 @@
                 layer.style.transform = `translateY(${window.scrollY * speed}px)`;
             });
         });
+        function scrollToDiv(divId) {
+        const div = document.getElementById(divId);
+        if (div) {
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+        }
     </script>
 </body>
 </html>
