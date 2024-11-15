@@ -110,10 +110,52 @@ body {
     }
 }
 
+
+
+
+
+/* Logo Container */
+.logo-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    animation: logoEntry 2s ease-in-out forwards;
+}
+
+/* Logo Image */
+.logo {
+    width: 150px;
+    height: auto;
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Animación del Logo */
+@keyframes logoEntry {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -300%);
+    }
+}
+
     </style>
 </head>
 <body>
-    <!-- Contenedor principal -->
+    <!-- Contenedor del logo animado -->
+    <div class="logo-container">
+        <img src="assets/images/logo.png" alt="Logo del Proyecto" class="logo">
+    </div>
+
+    <!-- Contenido principal de la página -->
     <div class="hero-section">
         <div class="overlay"></div>
         <div class="content">
@@ -123,7 +165,7 @@ body {
         </div>
     </div>
 
-    <!-- Sección de descripción -->
+    <!-- Resto del contenido -->
     <section id="about" class="about-section">
         <h2>Sobre el Proyecto</h2>
         <p>
