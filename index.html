@@ -3,176 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador de Tareas</title>
+    <title>Nexus</title>
     <style>
-        /* Fondo principal */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Fondo oscuro */
-    color: #e0e0e0; /* Texto claro */
-}
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #121212; /* Fondo oscuro */
+            color: #f0f0f0; /* Texto claro */
+            overflow-x: hidden;
+            
+        }
+        
 
-/* Hero Section */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('fondo-cyberpunk.jpg') no-repeat center center/cover;
-    overflow: hidden;
-}
+        /* Contenedor de desplazamiento parallax */
+        .parallax {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-/* Overlay */
-.hero-section .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Oscurecer un poco el fondo */
-    z-index: 1;
-}
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
 
-/* Contenido de la Hero Section */
-.hero-section .content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #fff;
-    animation: fadeIn 2s ease-in-out;
-}
+        .layer-1 {
+            background: radial-gradient(circle, #1f1f1f, #121212); /* Capa base */
+            z-index: 1;
+        }
 
-.hero-section h1 {
-    font-size: 3rem;
-    color: #ff79c6; /* Rosa brillante */
-    text-shadow: 0 0 10px #ff79c6, 0 0 20px #ff79c6;
-}
+        .layer-2 {
+            background: url('background.png') no-repeat center center/cover;
+            z-index: 2;
+            opacity: 0.4;
+        }
 
-.hero-section p {
-    font-size: 1.5rem;
-    color: #bd93f9; /* Morado brillante */
-    text-shadow: 0 0 10px #bd93f9, 0 0 20px #bd93f9;
-    margin: 20px 0;
-}
+        .layer-3 {
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            mix-blend-mode: overlay;
+            z-index: 3;
+            opacity: 0.2;
+        }
 
-/* Botones estilo neón */
-.btn-neon {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: transparent;
-    border: 2px solid #ff79c6;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 5px #ff79c6, 0 0 10px #ff79c6;
-}
+        .hero {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 50px 20px;
+        }
 
-.btn-neon:hover {
-    color: #121212;
-    background-color: #ff79c6;
-    box-shadow: 0 0 15px #ff79c6, 0 0 30px #ff79c6;
-}
+        .hero h1 {
+            font-size: 2.5em;
+            color: #b731bc; /* Tono llamativo */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-/* Sección About */
-.about-section {
-    padding: 50px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #1e1e1e, #121212);
-    border-top: 3px solid #bd93f9;
-}
+        .hero p {
+            font-size: 1.2em;
+            color: #ddd;
+            margin: 10px 0 20px;
+        }
 
-.about-section h2 {
-    font-size: 2.5rem;
-    color: #50fa7b; /* Verde neón */
-    text-shadow: 0 0 10px #50fa7b, 0 0 20px #50fa7b;
-}
+        .hero .cta button {
+            margin: 10px 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #121212;
+            background-color: #b731bc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            
+        }
 
-.about-section p {
-    font-size: 1.2rem;
-    color: #e0e0e0;
-    margin: 20px 0;
-    line-height: 1.8;
-}
-/* Animación de desvanecimiento */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+        .hero .cta button:hover {
+            background-color: #b721bc;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 20px;
+            background: #1f1f1f; /* Sección de características */
+            color: #f0f0f0;
+        }
+
+        .features div {
+            flex: 1 1 300px;
+            max-width: 400px;
+            background: #292929;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .features div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .features div h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #b731bc;
+        }
+
+        .features div p {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        
+        /* Animación de carga */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            font-size: 3em;
+            color: #00d4ff;
+            transform: rotate(0deg);
+            animation: spin-and-appear 2s ease forwards;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #ddd;
+            opacity: 0;
+            animation: fade-in 1s ease 1.5s forwards;
+        }
+
+        @keyframes spin-and-appear {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+        
+.download-section {
+        background: #1f1f1f;
+        padding: 50px 20px;
+        text-align: center;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .download-section h2 {
+        font-size: 2em;
+        color: #b731bc;
+        margin-bottom: 20px;
     }
-}
 
-
-
-
-
-/* Logo Container */
-.logo-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    animation: logoEntry 2s ease-in-out forwards;
-}
-
-/* Logo Image */
-.logo {
-    width: 150px;
-    height: auto;
-    opacity: 0; /* Inicia invisible */
-}
-
-/* Animación del Logo */
-@keyframes logoEntry {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-        opacity: 0;
+    .download-section p {
+        font-size: 1.2em;
+        color: #ddd;
+        margin-bottom: 30px;
     }
-    50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) rotate(180deg);
+    .download-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -300%);
-    }
-}
 
+    .download-list a {
+        text-decoration: none;
+        padding: 15px 25px;
+        font-size: 1em;
+        color: #121212;
+        background: #b731bc;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    .download-list a:hover {
+        background: #007bff;
+        transform: translateY(-5px);
+    }
+        
+        
     </style>
 </head>
 <body>
-    <!-- Contenedor del logo animado -->
-    <div class="logo-container">
-        <img src="assets/images/logo.png" alt="Logo del Proyecto" class="logo">
-    </div>
 
-    <!-- Contenido principal de la página -->
-    <div class="hero-section">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Bienvenido a Mi Proyecto</h1>
-            <p>Explora el futuro de la tecnología con este diseño inspirado en el Cyberpunk.</p>
-            <a href="#about" class="btn-neon">Descubrir más</a>
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-logo"><img src="logo.png" width="80px"></div>
+        <div class="loading-text">Nexus</div>
+    </div>
+    <!-- Contenedor Parallax -->
+    <div class="parallax">
+        <div class="parallax-layer layer-1"></div>
+        <div class="parallax-layer layer-2"></div>
+        <div class="parallax-layer layer-3"></div>
+        <div class="hero">
+            <h1>Administra tus tareas de forma simple y eficiente</h1>
+            <p>Tu tiempo, tus reglas. Organízate con nuestra app diseñada para maximizar tu productividad.</p>
+            <div class="cta">
+                <button>Probar la demo</button>
+                <button>Explorar funciones</button>
+            </div>
         </div>
     </div>
 
-    <!-- Resto del contenido -->
-    <section id="about" class="about-section">
-        <h2>Sobre el Proyecto</h2>
-        <p>
-            Este proyecto está diseñado para resolver problemas de administración de tareas con un enfoque moderno y futurista.
-            Usamos tecnologías de vanguardia para garantizar una experiencia única.
-        </p>
-        <a href="https://github.com/tu-nombre-de-usuario/tu-repositorio" class="btn-neon">Ver en GitHub</a>
-    </section>
+    <!-- Sección de características -->
+    <div class="features">
+        <div>
+            <h3>Interfaz amigable</h3>
+            <p>Diseño intuitivo y fácil de usar para todos.</p>
+        </div>
+        <div>
+            <h3>Sincronización</h3>
+            <p>Accede a tus tareas en tiempo real desde cualquier dispositivo.</p>
+        </div>
+        <div>
+            <h3>Personalización</h3>
+            <p>Adapta la app a tus necesidades específicas.</p>
+        </div>
+    </div>
+    
+    <div class="download-section" id="downloads">
+    <h2>Descarga la aplicación</h2>
+    <p>Disponible para distintas plataformas. ¡Empieza a administrar tus tareas ahora mismo!</p>
+    <div class="download-list">
+        <a href="ruta_del_ejecutable_windows.exe" download>Descargar para Windows</a>
+        <a href="ruta_del_ejecutable_mac.dmg" download>Descargar para macOS</a>
+        <a href="ruta_del_ejecutable_linux.AppImage" download>Descargar para Linux</a>
+    </div>
+</div>
+
+<!-- Pie de página -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Nexus. Todos los derechos reservados. Propiedad de M.U.S.E.</p>
+        <div class="footer-links">
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/pancake_boy_uwu_15/profilecard/?igsh=MWpwYTNzOTNtZ2Ezaw==" title="Instagram">Instagram</a>
+            <a href="mailto:1first.ask@gmail.com" title="E-mail">E-mail</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Pie de página */
+    .footer {
+        background: #1f1f1f;
+        color: #ddd;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 0.9em;
+        margin-top: 50px;
+        border-top: 1px solid #333;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .footer-content p {
+        margin: 10px 0;
+        color: #bbb;
+    }
+
+    .footer-links {
+        margin: 15px 0;
+    }
+
+    .footer-links a {
+        color: #b731bc;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #b731bc;
+    }
+
+    .footer-socials {
+        margin-top: 10px;
+    }
+
+    .footer-socials a {
+        margin: 0 10px;
+        font-size: 1.5em;
+        color: #b731bc;
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+    }
+</style>
+
+
+    <script>
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+
+            // Ocultar pantalla de carga después de 3 segundos
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                mainContent.classList.add('visible');
+            }, 3000);
+        });
+        // Efecto Parallax simple
+        window.addEventListener('scroll', () => {
+            const layers = document.querySelectorAll('.parallax-layer');
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.2;
+                layer.style.transform = `translateY(${window.scrollY * speed}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
