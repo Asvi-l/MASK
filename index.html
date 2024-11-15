@@ -5,25 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador de Tareas</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { background-color: #4CAF50; color: white; padding: 1rem; text-align: center; }
-        main { padding: 2rem; }
+        /* Fondo principal */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('fondo-cyberpunk.jpg') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+/* Overlay */
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Oscurecer un poco el fondo */
+    z-index: 1;
+}
+
+/* Contenido de la Hero Section */
+.hero-section .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    color: #ff79c6; /* Rosa brillante */
+    text-shadow: 0 0 10px #ff79c6, 0 0 20px #ff79c6;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    color: #bd93f9; /* Morado brillante */
+    text-shadow: 0 0 10px #bd93f9, 0 0 20px #bd93f9;
+    margin: 20px 0;
+}
+
+/* Botones estilo neón */
+.btn-neon {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #ff79c6;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #ff79c6, 0 0 10px #ff79c6;
+}
+
+.btn-neon:hover {
+    color: #121212;
+    background-color: #ff79c6;
+    box-shadow: 0 0 15px #ff79c6, 0 0 30px #ff79c6;
+}
+
+/* Sección About */
+.about-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #1e1e1e, #121212);
+    border-top: 3px solid #bd93f9;
+}
+
+.about-section h2 {
+    font-size: 2.5rem;
+    color: #50fa7b; /* Verde neón */
+    text-shadow: 0 0 10px #50fa7b, 0 0 20px #50fa7b;
+}
+
+.about-section p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin: 20px 0;
+    line-height: 1.8;
+}
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Administrador de Tareas</h1>
-    </header>
-    <main>
-        <h2>Bienvenido</h2>
-        <p>Esta es la página oficial del proyecto de administración de tareas desarrollado con Electron.</p>
-        <h3>Características:</h3>
-        <ul>
-            <li>Gestión intuitiva de tareas</li>
-            <li>Interfaz moderna y responsiva</li>
-            <li>Soporte multiplataforma</li>
-        </ul>
-        <p>¡Gracias por visitar!</p>
-    </main>
+    <!-- Contenedor principal -->
+    <div class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Bienvenido a Mi Proyecto</h1>
+            <p>Explora el futuro de la tecnología con este diseño inspirado en el Cyberpunk.</p>
+            <a href="#about" class="btn-neon">Descubrir más</a>
+        </div>
+    </div>
+
+    <!-- Sección de descripción -->
+    <section id="about" class="about-section">
+        <h2>Sobre el Proyecto</h2>
+        <p>
+            Este proyecto está diseñado para resolver problemas de administración de tareas con un enfoque moderno y futurista.
+            Usamos tecnologías de vanguardia para garantizar una experiencia única.
+        </p>
+        <a href="https://github.com/tu-nombre-de-usuario/tu-repositorio" class="btn-neon">Ver en GitHub</a>
+    </section>
 </body>
 </html>
