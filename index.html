@@ -1,8 +1,22 @@
-<style>
-*{
-    background-color: black;
-}
-</style>
-<center>
-    <img src="images.png">
-</center>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Deltarune Desktop World</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: black; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- barra opcional -->
+  <div id="ui" style="position:fixed;top:0;left:0;color:white;">
+    <button onclick="changeRoom('room1')">Room1</button>
+    <button onclick="changeRoom('room2')">Room2</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
